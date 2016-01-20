@@ -19,6 +19,12 @@ class SplashScreen: public GameState {
             }
         }
 
+        ~SplashScreen() {
+            for (int i=0;i<images.size();i++) {
+                SDL_FreeSurface(images[i]);
+            }
+        }
+
         void Update(double dt) {
             frame += dt * 200;
 
