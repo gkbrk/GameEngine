@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #include "GameState.h"
 #include "DeltaTimer.h"
 #include "Mouse.h"
@@ -21,6 +22,8 @@ namespace Engine {
                 return false;
             }else {
                 Engine::surface = SDL_GetWindowSurface(Engine::window);
+
+                TTF_Init(); // Initialize TrueType Fonts.
                 return true;
             }
         }
