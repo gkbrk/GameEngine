@@ -3,6 +3,7 @@
 #include <SDL2/SDL.h>
 #include "GameState.h"
 #include "DeltaTimer.h"
+#include "Mouse.h"
 #include <list>
 
 namespace Engine {
@@ -37,6 +38,12 @@ namespace Engine {
                         gameStates.clear();
                         state->stateFinished = true;
                     }
+
+                    if (e.type == SDL_MOUSEMOTION) {
+                        // Update the Mouse namespace on Mouse events
+                        SDL_GetMouseState(&Mouse::x, &Mouse::y);
+                    }
+
                     state->HandleEvent(&e);
                 }
 
