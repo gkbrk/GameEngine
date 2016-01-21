@@ -64,4 +64,9 @@ namespace Engine {
             return false;
         }
     }
+
+    void toggle_fullscreen() {
+        SDL_SetWindowFullscreen(Engine::window, SDL_GetWindowFlags(Engine::window) ^ SDL_WINDOW_FULLSCREEN);
+        Engine::surface = SDL_GetWindowSurface(Engine::window);
+    }
 }
