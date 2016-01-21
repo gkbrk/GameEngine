@@ -13,6 +13,11 @@ class Text: public Sprite {
             renderedText = TTF_RenderText_Solid(font, " ", color);
         }
 
+        ~Text() {
+            TTF_CloseFont(font);
+            SDL_FreeSurface(renderedText);
+        }
+
         void SetText(std::string text, SDL_Color color) {
             SDL_FreeSurface(renderedText);
             renderedText = TTF_RenderText_Solid(font, text.c_str(), color);

@@ -13,6 +13,10 @@ class ImageSprite: public Sprite {
             height = image->h;
         }
 
+        ~ImageSprite() {
+            SDL_FreeSurface(image);
+        }
+
         void Draw() {
             SDL_Rect spriteRect;
             spriteRect.x = position.first;
