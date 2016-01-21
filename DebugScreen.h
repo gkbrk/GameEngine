@@ -24,13 +24,13 @@ class DebugScreen: public GameState {
             x_line.x = Mouse::x;
             x_line.y = 0;
             x_line.w = 2;
-            x_line.h = 600;
+            x_line.h = Engine::height;
             SDL_FillRect(Engine::surface, &x_line, SDL_MapRGB(Engine::surface->format, 255, 255, 255));
             
             SDL_Rect y_line;
             y_line.x = 0;
             y_line.y = Mouse::y;
-            y_line.w = 800;
+            y_line.w = Engine::width;
             y_line.h = 2;
             SDL_FillRect(Engine::surface, &y_line, SDL_MapRGB(Engine::surface->format, 255, 255, 255));
             
@@ -44,7 +44,7 @@ class DebugScreen: public GameState {
 
             crosshair->SetCenteredPosition(Mouse::x, Mouse::y);
 
-            if (Mouse::x > 797 && Mouse::y > 597) {
+            if (Mouse::x > 1360 && Mouse::y > 760) {
                 stateFinished = true;
             }
         }

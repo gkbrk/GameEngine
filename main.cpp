@@ -1,9 +1,11 @@
 #include "Engine.h"
-#include "RedScreen.h"
+#include "SplashScreen.h"
+#include "DebugScreen.h"
 
 int main() {
     Engine::init_sdl();
-    Engine::gameStates.push_back(new RedScreen());
+    Engine::gameStates.push_back(new SplashScreen("Resources/splash/", 2, 500));
+    Engine::gameStates.push_back(new DebugScreen());
     
     while (true) {
         if (!Engine::tick()) {

@@ -12,12 +12,15 @@ namespace Engine {
     SDL_Surface *surface;
     std::list<GameState*> gameStates;
     DeltaTimer timer;
+    
+    const int width = 1366;
+    const int height = 768;
 
     bool init_sdl() {
         if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0) {
             return false;
         }else {
-            Engine::window = SDL_CreateWindow("Game Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);
+            Engine::window = SDL_CreateWindow("Game Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN);
             if (Engine::window == NULL) {
                 return false;
             }else {
