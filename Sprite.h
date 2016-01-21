@@ -18,6 +18,10 @@ class Sprite {
             position.second = y;
         }
 
+        void SetCenteredPosition(int x, int y) {
+            SetPosition(x-width/2, y-height/2);
+        }
+
         std::pair<double, double> position;
         int width, height;
 };
