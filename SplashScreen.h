@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <sstream>
+#include <iostream>
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -15,7 +16,13 @@ class SplashScreen: public GameState {
             for (int i=0;i<imageCount;i++) {
                 std::ostringstream imagePath;
                 imagePath << path << i << ".png";
-                images.push_back(IMG_Load(imagePath.str().c_str()));
+                SDL_Surface *img = IMG_Load(imagePath.str().c_str());
+
+                if (img == NULL) {
+                    std::cerr << "Cannot load image " << imagePath.str() << std::endl;
+                }else {
+                    images.push_back(IMG_Load(imagePath.str().c_str()));
+                }
             }
         }
 
