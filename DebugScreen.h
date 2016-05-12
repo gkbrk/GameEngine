@@ -10,8 +10,11 @@
 class DebugScreen: public GameState {
     public:
         DebugScreen() {
-            mouse_coords = new Text("/usr/share/fonts/TTF/DejaVuSans.ttf", 18);
+            mouse_coords = new Text("/usr/share/fonts/TTF/DejaVuSans.ttf", 15);
             mouse_coords->SetPosition(15, 15);
+
+            fps = new Text("/usr/share/fonts/TTF/DejaVuSans.ttf", 15);
+            fps->SetPosition(15, 35);
 
             crosshair = new ImageSprite("Resources/sprites/crosshair.png");
         }
@@ -19,6 +22,7 @@ class DebugScreen: public GameState {
         void Draw() {
             SDL_FillRect(Engine::surface, NULL, SDL_MapRGB(Engine::surface->format, 0, 0, 0));
             mouse_coords->Draw();
+            fps->Draw();
 
             SDL_Rect x_line;
             x_line.x = Mouse::x;
@@ -42,6 +46,10 @@ class DebugScreen: public GameState {
             mouse_text << "X: " << Mouse::x << " | Y: " << Mouse::y;
             mouse_coords->SetText(mouse_text.str());
 
+            std::ostringstream fps_text;
+            fps_text << "FPS: " << Engine::averageFPS;
+            fps->SetText(fps_text.str());
+
             crosshair->SetCenteredPosition(Mouse::x, Mouse::y);
 
             if (Mouse::x > 1360 && Mouse::y > 760) {
@@ -50,5 +58,6 @@ class DebugScreen: public GameState {
         }
 
         Text *mouse_coords;
+        Text *fps;
         ImageSprite *crosshair;
 };

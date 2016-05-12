@@ -12,6 +12,8 @@ namespace Engine {
     SDL_Surface *surface;
     std::list<GameState*> gameStates;
     DeltaTimer timer;
+    double averageDelta;
+    int averageFPS;
     
     const int width = 1366;
     const int height = 768;
@@ -57,6 +59,10 @@ namespace Engine {
                 state->Update(delta);
                 state->Draw();
                 SDL_UpdateWindowSurface(Engine::window);
+
+                float averageDeltaSmoothing = 0.9;
+                averageDelta = (averageDelta * averageDeltaSmoothing) + (delta * (1.0 * averageDeltaSmoothing));
+                averageFPS = 1.0 / averageDelta;
             }else {
                 gameStates.pop_front();
                 delete state;
