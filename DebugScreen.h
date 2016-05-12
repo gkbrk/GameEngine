@@ -19,6 +19,12 @@ class DebugScreen: public GameState {
             crosshair = new ImageSprite("Resources/sprites/crosshair.png");
         }
 
+        ~DebugScreen() {
+            delete mouse_coords;
+            delete fps;
+            delete crosshair;
+        }
+
         void Draw() {
             SDL_FillRect(Engine::surface, NULL, SDL_MapRGB(Engine::surface->format, 0, 0, 0));
             mouse_coords->Draw();
