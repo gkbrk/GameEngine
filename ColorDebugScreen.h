@@ -33,5 +33,6 @@ class ColorDebugScreen: public GameState {
             blue = b;
         }
 
+    private:
         int red, green, blue;
 };
