@@ -12,6 +12,7 @@
 class SplashScreen: public GameState {
     public:
         SplashScreen(std::string path, int imageCount, int totalFrames) {
+            frame = 0;
             this->totalFrames = totalFrames;
             for (int i=0;i<imageCount;i++) {
                 std::ostringstream imagePath;
