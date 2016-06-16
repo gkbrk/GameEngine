@@ -61,7 +61,7 @@ namespace Engine {
                 SDL_UpdateWindowSurface(Engine::window);
 
                 float averageDeltaSmoothing = 0.9;
-                averageDelta = (averageDelta * averageDeltaSmoothing) + (delta * (1.0 * averageDeltaSmoothing));
+                averageDelta = (averageDelta * averageDeltaSmoothing) + (delta * (1.0 - averageDeltaSmoothing));
                 averageFPS = 1.0 / averageDelta;
             }else {
                 gameStates.pop_front();
