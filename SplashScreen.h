@@ -22,7 +22,7 @@ class SplashScreen: public GameState {
                 if (img == NULL) {
                     std::cerr << "Cannot load image " << imagePath.str() << std::endl;
                 }else {
-                    images.push_back(IMG_Load(imagePath.str().c_str()));
+                    images.push_back(img);
                 }
             }
         }
