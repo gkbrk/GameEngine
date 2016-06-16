@@ -22,6 +22,27 @@ class Sprite {
             SetPosition(x-width/2, y-height/2);
         }
 
+        bool CheckCollision(Sprite *other) {
+            // Sides of the first sprite
+            int leftA = position.first;
+            int rightA = position.first + width;
+            int topA = position.second;
+            int bottomA = position.second + height;
+            
+            // Sides of the second sprite
+            int leftB = other->position.first;
+            int rightB = other->position.first + width;
+            int topB = other->position.second;
+            int bottomB = other->position.second + height;
+
+            //Detect collision
+            if (bottomA <= topB || topA >= bottomB || rightA <= leftB || leftA >= rightB){
+                return false;
+            }else{
+                return true;
+            }
+        }
+
         std::pair<double, double> position;
         int width, height;
 };
