@@ -8,7 +8,12 @@
 class ImageSprite: public Sprite {
     public:
         ImageSprite(std::string path) {
-            image = IMG_Load(path.c_str());
+            SDL_Surface *raw_image = IMG_Load(path.c_str());
+
+            // Optimize image
+            image = SDL_ConvertSurface(raw_image, Engine::surface->format, 0);
+            SDL_FreeSurface(raw_image);
+            
             width = image->w;
             height = image->h;
         }
