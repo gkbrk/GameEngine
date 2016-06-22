@@ -28,7 +28,7 @@ class Sprite {
             int rightA = position.first + width;
             int topA = position.second;
             int bottomA = position.second + height;
-            
+
             // Sides of the second sprite
             int leftB = other->position.first;
             int rightB = other->position.first + width;

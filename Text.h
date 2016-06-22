@@ -11,6 +11,7 @@ class Text: public Sprite {
             font = TTF_OpenFont(fontPath.c_str(), fontSize);
             color = {255, 255, 255};
             renderedText = TTF_RenderText_Solid(font, " ", color);
+            text = " ";
         }
 
         ~Text() {
@@ -19,10 +20,13 @@ class Text: public Sprite {
         }
 
         void SetText(std::string text, SDL_Color color) {
-            SDL_FreeSurface(renderedText);
-            renderedText = TTF_RenderText_Solid(font, text.c_str(), color);
-            width = renderedText->w;
-            height = renderedText->h;
+            if (text != this->text) {
+                SDL_FreeSurface(renderedText);
+                renderedText = TTF_RenderText_Solid(font, text.c_str(), color);
+                width = renderedText->w;
+                height = renderedText->h;
+                this->text = text;
+            }
         }
 
         void SetText(std::string text) {
@@ -46,5 +50,6 @@ class Text: public Sprite {
 
         TTF_Font *font;
         SDL_Color color;
+        std::string text;
         SDL_Surface *renderedText;
 };
