@@ -14,7 +14,7 @@ namespace Engine {
     DeltaTimer timer;
     double averageDelta;
     int averageFPS;
-    
+
     const int width = 1366;
     const int height = 768;
 
@@ -77,5 +77,9 @@ namespace Engine {
     void toggle_fullscreen() {
         SDL_SetWindowFullscreen(Engine::window, SDL_GetWindowFlags(Engine::window) ^ SDL_WINDOW_FULLSCREEN);
         Engine::surface = SDL_GetWindowSurface(Engine::window);
+    }
+
+    void Exit(int exitCode) {
+        std::exit(exitCode);
     }
 }
