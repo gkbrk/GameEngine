@@ -16,13 +16,13 @@ class DebugScreen: public GameState {
             fps = new Text("/usr/share/fonts/TTF/DejaVuSans.ttf", 15);
             fps->SetPosition(15, 35);
 
-            crosshair = new ImageSprite("Resources/sprites/crosshair.png");
+            crosshair = Entity();
+            crosshair.SetSprite(new ImageSprite("Resources/sprites/crosshair.png"));
         }
 
         ~DebugScreen() {
             delete mouse_coords;
             delete fps;
-            delete crosshair;
         }
 
         void Draw() {
@@ -36,15 +36,15 @@ class DebugScreen: public GameState {
             x_line.w = 2;
             x_line.h = Engine::height;
             SDL_FillRect(Engine::surface, &x_line, SDL_MapRGB(Engine::surface->format, 255, 255, 255));
-            
+
             SDL_Rect y_line;
             y_line.x = 0;
             y_line.y = Mouse::y;
             y_line.w = Engine::width;
             y_line.h = 2;
             SDL_FillRect(Engine::surface, &y_line, SDL_MapRGB(Engine::surface->format, 255, 255, 255));
-            
-            crosshair->Draw();
+
+            crosshair.DrawCentered();
         }
 
         void Update(double dt) {
@@ -56,7 +56,7 @@ class DebugScreen: public GameState {
             fps_text << "FPS: " << Engine::averageFPS;
             fps->SetText(fps_text.str());
 
-            crosshair->SetCenteredPosition(Mouse::x, Mouse::y);
+            crosshair.SetPosition(Mouse::x, Mouse::y);
 
             if (Mouse::x > 1360 && Mouse::y > 760) {
                 stateFinished = true;
@@ -65,5 +65,5 @@ class DebugScreen: public GameState {
 
         Text *mouse_coords;
         Text *fps;
-        ImageSprite *crosshair;
+        Entity crosshair;
 };

@@ -4,28 +4,21 @@
 #include <SDL2/SDL_image.h>
 #include "Engine.h"
 #include "Sprite.h"
+#include "ImageStore.h"
 
 class ImageSprite: public Sprite {
     public:
         ImageSprite(std::string path) {
-            SDL_Surface *raw_image = IMG_Load(path.c_str());
-
-            // Optimize image
-            image = SDL_ConvertSurface(raw_image, Engine::surface->format, 0);
-            SDL_FreeSurface(raw_image);
-            
+            ImageStore::LoadImage(path);
+            image = ImageStore::GetImage(path);
             width = image->w;
             height = image->h;
         }
 
-        ~ImageSprite() {
-            SDL_FreeSurface(image);
-        }
-
-        void Draw() {
+        void Draw(int x, int y) {
             SDL_Rect spriteRect;
-            spriteRect.x = position.first;
-            spriteRect.y = position.second;
+            spriteRect.x = x;
+            spriteRect.y = y;
             SDL_BlitSurface(image, NULL, Engine::surface, &spriteRect);
         }
 

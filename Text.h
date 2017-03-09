@@ -4,8 +4,8 @@
 #include <SDL2/SDL_ttf.h>
 #include "Engine.h"
 #include "Sprite.h"
-
-class Text: public Sprite {
+#include "Entity.h"
+class Text: public Entity {
     public:
         Text(std::string fontPath, int fontSize) {
             font = TTF_OpenFont(fontPath.c_str(), fontSize);

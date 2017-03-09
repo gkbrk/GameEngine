@@ -60,7 +60,7 @@ namespace Engine {
                 state->Draw();
                 SDL_UpdateWindowSurface(Engine::window);
 
-                float averageDeltaSmoothing = 0.9;
+                float averageDeltaSmoothing = 0.99;
                 averageDelta = (averageDelta * averageDeltaSmoothing) + (delta * (1.0 - averageDeltaSmoothing));
                 averageFPS = 1.0 / averageDelta;
             }else {

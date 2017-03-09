@@ -7,6 +7,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
+#include "ImageStore.h"
 #include "GameState.h"
 
 class SplashScreen: public GameState {
@@ -17,19 +18,8 @@ class SplashScreen: public GameState {
             for (int i=0;i<imageCount;i++) {
                 std::ostringstream imagePath;
                 imagePath << path << i << ".png";
-                SDL_Surface *img = IMG_Load(imagePath.str().c_str());
-
-                if (img == NULL) {
-                    std::cerr << "Cannot load image " << imagePath.str() << std::endl;
-                }else {
-                    images.push_back(img);
-                }
-            }
-        }
-
-        ~SplashScreen() {
-            for (int i=0;i<images.size();i++) {
-                SDL_FreeSurface(images[i]);
+                ImageStore::LoadImage(imagePath.str());
+                images.push_back(ImageStore::GetImage(imagePath.str()));
             }
         }
 
