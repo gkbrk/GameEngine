@@ -39,7 +39,7 @@ namespace Engine {
             GameState *state = gameStates.front();
 
             if (!state->stateFinished) {
-                // Stuff
+                // SDL event handling see https://wiki.libsdl.org/SDL_PollEvent
                 SDL_Event e;
                 while (SDL_PollEvent(&e) != 0) {
                     if (e.type == SDL_QUIT) {
